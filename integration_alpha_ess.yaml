@@ -406,6 +406,16 @@ input_number:
     mode: slider
     step: 1.0
 
+#Helper for setting the Dispatch Mode
+  alpha_ess_helper_dispatch_mode_value:
+    name: "Setting Dispatch Mode"
+    min: 1
+    max: 10
+    icon: mdi:cloud_percent
+    unit_of_measurement: "%"
+    mode: slider
+    step: 1.0
+
 #Helper for setting the MaxFeedToGrid
   alpha_ess_helper_feedtogrid_value:
     name: "Setting Max Feed to Grid"
@@ -415,6 +425,7 @@ input_number:
     unit_of_measurement: "%"
     mode: slider
     step: 1.0
+
 #Automations
 automation:
   - id: "Alpha_ESS_Setting_FeedToGrid"
@@ -433,6 +444,7 @@ automation:
           slave: 85
           value: "{{ (states('input_number.alpha_ess_helper_feedtogrid_value') | int)}}"
     mode: single
+      
   - id: "Alpha_ESS_Setting_TargetSoC"
     alias: PV_Set_TargetSoC_Value
     description: "With slide the target SoC is set and send to System via modbus"
@@ -448,6 +460,23 @@ automation:
           address: 2128
           slave: 85
           value: "{{ (states('input_number.alpha_ess_helper_target_soc_value') | int)}}"
+    mode: single
+
+  - id: "Alpha_ESS_Setting_Dispatch_Mode"
+    alias: PV_Set_DispatchMode_Value
+    description: "With slide the target Dispatch Mode is set and send to System via modbus"
+    trigger:
+      - platform: state
+        entity_id:
+          - input_number.alpha_ess_helper_dispatch_mode_value
+    condition: []
+    action:
+      - service: modbus.write_register
+        data:
+          hub: modbuspvsystem
+          address: 2181
+          slave: 85
+          value: "{{ (states('input_number.alpha_ess_helper_dispatch_mode_value') | int)}}"
     mode: single
 
 #Sensor templates
