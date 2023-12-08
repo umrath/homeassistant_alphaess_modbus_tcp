@@ -411,7 +411,7 @@ input_number:
     name: "Setting Dispatch Mode"
     min: 1
     max: 10
-    icon: mdi:percent
+    icon: mdi:counter
     unit_of_measurement: "%"
     mode: slider
     step: 1.0
