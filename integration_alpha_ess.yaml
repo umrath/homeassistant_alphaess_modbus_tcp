@@ -401,7 +401,7 @@ input_number:
     name: "Setting Target SoC"
     min: 0
     max: 100
-    icon: mdi:cloud_percent
+    icon: mdi:percent
     unit_of_measurement: "%"
     mode: slider
     step: 1.0
@@ -411,7 +411,7 @@ input_number:
     name: "Setting Dispatch Mode"
     min: 1
     max: 10
-    icon: mdi:cloud_percent
+    icon: mdi:percent
     unit_of_measurement: "%"
     mode: slider
     step: 1.0
@@ -421,7 +421,7 @@ input_number:
     name: "Setting Max Feed to Grid"
     min: 0
     max: 100
-    icon: mdi:cloud_percent
+    icon: mdi:percent
     unit_of_measurement: "%"
     mode: slider
     step: 1.0
