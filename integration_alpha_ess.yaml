@@ -412,6 +412,16 @@ input_number:
     min: 1
     max: 10
     icon: mdi:counter
+      #unit_of_measurement: "%"
+    mode: slider
+    step: 1.0
+
+#Helper for setting the SoC Dispatch Mode
+  alpha_ess_helper_dispatch_mode_soc_value:
+    name: "Setting Dispatch Mode SoC"
+    min: 1
+    max: 100
+    icon: mdi:percent
     unit_of_measurement: "%"
     mode: slider
     step: 1.0
@@ -477,6 +487,23 @@ automation:
           address: 2181
           slave: 85
           value: "{{ (states('input_number.alpha_ess_helper_dispatch_mode_value') | int)}}"
+    mode: single
+
+  - id: "Alpha_ESS_Setting_Dispatch_Mode_SoC"
+    alias: PV_Set_DispatchMode_Value_SoC
+    description: "With slide the target Dispatch Mode SoC is set and send to System via modbus"
+    trigger:
+      - platform: state
+        entity_id:
+          - input_number.alpha_ess_helper_dispatch_mode_soc_value
+    condition: []
+    action:
+      - service: modbus.write_register
+        data:
+          hub: modbuspvsystem
+          address: 2182
+          slave: 85
+          value: "{{ (states('input_number.alpha_ess_helper_dispatch_mode_soc_value') | int)}}"
     mode: single
 
 #Sensor templates
