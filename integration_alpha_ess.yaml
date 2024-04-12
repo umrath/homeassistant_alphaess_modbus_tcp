@@ -5,7 +5,7 @@ modbus:
     host: !secret alphaess_modbus_host_ip
     port: !secret alphaess_modbus_host_port
     message_wait_milliseconds: 5 # waittime between 2 messages
-    timeout: 10 # timeout in seconds before connection is closed
+    timeout: 30 # timeout in seconds before connection is closed
     delay: 1 # delay in seconds at startup
 
     #definition of sensors
