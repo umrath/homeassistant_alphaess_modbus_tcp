@@ -430,7 +430,7 @@ template:
       #Total consumption of the home
       - name: alpha_ess_totalenergyconsume_home
         unit_of_measurement: "kWh"
-        state: "{{ states('sensor.pv_totalenergyfrompv_pv') |float + states('sensor.pv_totalenergyconsume_grid') | float - states('sensor.pv_totalenergyfeed_grid') | float }}"
+        state: "{{ states('sensor.alpha_ess_total_energy_from_pv') | float + states('sensor.alpha_ess_total_energy_consumption_from_grid') | float - states('sensor.alpha_ess_total_energy_feed_to_grid') | float }}"
       #Total current production
       - name: alpha_ess_actual_production
         unit_of_measurement: "W"
@@ -438,4 +438,4 @@ template:
      #Total consumption of the house
       - name: alpha_ess_actual_house_consumption
         unit_of_measurement: "W"
-        state: "{{ (states('sensor.pv_totalpower_inverter')|float + states('sensor.pv_totalpower_grid')|float ) }}"
+        state: "{{ (states('sensor.alpha_ess_total_power_inverter') | float + states('sensor.alpha_ess_total_power_grid') | float ) }}"
